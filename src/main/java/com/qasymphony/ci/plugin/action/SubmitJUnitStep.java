@@ -20,6 +20,8 @@ import com.qasymphony.ci.plugin.submitter.JunitSubmitterResult;
 import com.qasymphony.ci.plugin.utils.HttpClientUtils;
 import com.qasymphony.ci.plugin.utils.JsonUtils;
 import com.qasymphony.ci.plugin.utils.LoggerUtils;
+import edu.umd.cs.findbugs.annotations.Nullable;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
@@ -36,8 +38,6 @@ import org.jenkinsci.plugins.workflow.job.WorkflowRun;
 import org.jenkinsci.plugins.workflow.steps.*;
 import org.kohsuke.stapler.*;
 import org.kohsuke.stapler.bind.JavaScriptMethod;
-import javax.annotation.CheckForNull;
-import javax.annotation.Nonnull;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -80,7 +80,7 @@ public class SubmitJUnitStep extends Step {
             return ImmutableSet.of(Run.class, FilePath.class, TaskListener.class);
         }
 
-        @Nonnull
+        @NonNull
         @Override
         public String getDisplayName() {
             return "Submit jUnit test result to qTest";
@@ -88,7 +88,7 @@ public class SubmitJUnitStep extends Step {
 
 
         @Override
-        public Step newInstance(@CheckForNull StaplerRequest req, @Nonnull JSONObject formData) throws FormException {
+        public Step newInstance(@Nullable StaplerRequest req, @NonNull JSONObject formData) throws FormException {
             Boolean createTestSuiteEveryBuildDate = false;
             formData.remove("stapler-class");
             formData.remove("$class");

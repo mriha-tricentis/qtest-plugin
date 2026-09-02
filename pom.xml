@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.86</version> <!-- See https://github.com/jenkinsci/plugin-pom/releases for available versions-->
+    <version>6.2221.va_045130417c9</version>
     <relativePath />
   </parent>
 
@@ -31,10 +31,10 @@
   <properties>
     <revision>2028.0</revision>
     <changelist>999999-SNAPSHOT</changelist>
-    <findbugs.skip>true</findbugs.skip>
-    <jenkins.baseline>2.426</jenkins.baseline>
+    <spotbugs.skip>true</spotbugs.skip>
+    <jenkins.baseline>2.516</jenkins.baseline>
     <jenkins.version>${jenkins.baseline}.3</jenkins.version>
-    <jenkins.bom.version>3208.vb_21177d4b_cd9</jenkins.bom.version>
+    <jenkins.bom.version>6210.v69ea_fd8a_f010</jenkins.bom.version>
   </properties>
   <scm>
     <connection>scm:git:https://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
@@ -133,61 +133,4 @@
       <artifactId>cloudbees-folder</artifactId>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.5</version>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.1</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <version>1.23</version>
-        <configuration>
-          <signature>
-            <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java17</artifactId>
-            <version>1.0</version>
-          </signature>
-        </configuration>
-        <executions>
-          <execution>
-            <id>animal-sniffer</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
