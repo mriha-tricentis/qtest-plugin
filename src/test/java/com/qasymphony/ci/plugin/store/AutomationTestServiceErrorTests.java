@@ -14,8 +14,8 @@ import org.junit.Test;
 
 import java.util.Collections;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 public class AutomationTestServiceErrorTests extends TestAbstracts {
 
@@ -31,7 +31,7 @@ public class AutomationTestServiceErrorTests extends TestAbstracts {
   }
 
   @Test(expected = OAuthException.class)
-  public void oauthFailureThrowsSubmittedException() throws OAuthException {
+  public void oauthFailureThrowsOAuthException() throws OAuthException {
     qtest.getServer().resetStubs();
     qtest.getServer().stubOAuthFailure(401);
     Configuration configuration = SubmitTestFixtures.ciConfiguration(qtest);
@@ -52,7 +52,7 @@ public class AutomationTestServiceErrorTests extends TestAbstracts {
       submitter.submit(request);
       throw new AssertionError("Expected SubmittedException");
     } catch (SubmittedException e) {
-      assertTrue(e.getMessage() != null || e.getStatus() == 400);
+      assertEquals(400, e.getStatus());
     }
   }
 }
